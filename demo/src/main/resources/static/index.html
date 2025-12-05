@@ -1,95 +1,14 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Spring Boot Page</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            max-width: 800px;
-            margin: 50px auto;
-            padding: 20px;
-        }
-        h1 {
-            color: #333;
-        }
-        button {
-            padding: 10px 20px;
-            font-size: 16px;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #0056b3;
-        }
-        #message {
-            margin-top: 20px;
-            padding: 15px;
-            background-color: #f8f9fa;
-            border-radius: 4px;
-            display: none;
-        }
-    </style>
-</head>
-<body>
-    <main>
-        <h1>My Spring Boot Page</h1>
-        <button onclick="getMessage()">Get Message</button>
-        <div id="message"></div>
-        <div style="margin-top: 30px;">
-            <textarea id="jsonInput" rows="10" cols="50" placeholder='Enter JSON here...'></textarea><br>
-            <button onclick="sendJsonInput()">Send JSON Input</button>
-            <button onclick="getJsonResponse()">Get JSON Response</button>
-            <div id="postResponse" style="font-family:'Courier New', Courier, monospace"></div>
-            <textarea id="jsonResponse" rows="10" cols="50" readonly style="font-family:'Courier New', Courier, monospace"></textarea>
-        </div>
-        <script>
-            async function getMessage() {
-                try {
-                    const response = await fetch('/hello');
-                    const data = await response.json();
-                    document.getElementById('message').textContent = data.message;
-                    document.getElementById('message').style.display = 'block';
-                } catch (error) {
-                    console.error('Error fetching message:', error);
-                    document.getElementById('message').textContent = 'Error fetching message';
-                    document.getElementById('message').style.display = 'block';
-                }
-            }
-
-            async function sendJsonInput() {
-                const jsonInput = document.getElementById('jsonInput').value;
-                try {
-                    const response = await fetch('/json', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: jsonInput
-                    });
-                    const data = await response.json();
-                    document.getElementById('postResponse').textContent = JSON.stringify(data, null, 2);
-                } catch (error) {
-                    console.error('Error sending JSON input:', error);
-                    document.getElementById('postResponse').textContent = 'Error sending JSON input';
-                }
-            }
-
-            async function getJsonResponse() {
-                try {
-                    const response = await fetch('/json');
-                    const data = await response.json();
-                    document.getElementById('jsonResponse').value = JSON.stringify(data, null, 2);
-                } catch (error) {
-                    console.error('Error fetching JSON response:', error);
-                    document.getElementById('jsonResponse').value = 'Error fetching JSON response';
-                }
-            }   
-        </script>
-    </main>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Spring/React App</title>
+    <script type="module" crossorigin src="/assets/index-BQWH_KP6.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-BBlhLaBY.css">
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
 </html>

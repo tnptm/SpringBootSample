@@ -1,11 +1,16 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import axios from 'axios'
 import HelloStringColorizer from "./HelloStringColorizer"
 
 export default function Hello() {
     const [message, setMessage] = useState("");
     const [msgIndex, setMsgIndex] = useState(null);
+    const [textColor, setTextColor] = useState('rgb(0, 0, 0)');
     
+    useEffect(() => {
+        // Fetch initial message on component mount
+        handleGetHello();
+    }, []);
   
     async function handleGetHello(){
         try {
@@ -23,14 +28,24 @@ export default function Hello() {
         }
     }
 
+    function handleSetColor(color) {
+        setTextColor(color);
+    }
+
+    function handleGetColor() {
+        // Trigger color change by updating the message state
+        alert("RGB Color is: " + textColor);
+    }
     return (
         <>
             <div className="text-xl font-semibold mb-4">Hello Component</div>
             <div className="mb-4 flex flex-row items-center w-full justify-center gap-4">
                 
-                <button className="bg-blue-500 text-white px-4 py-2 rounded" onClick={handleGetHello}>Get Message</button>
-                <div id="message" className='w-1/3 bg-white border border-gray-300 rounded-lg p-4 font-semibold text-center italic'>
-                    <HelloStringColorizer text={`"${message}"`} />
+                <button className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 hover:shadow transition-colors duration-300" onClick={handleGetHello}>Get Message</button>
+                <div id="message" className='w-1/3 bg-white border border-gray-300 rounded-lg p-4 font-semibold text-center italic'
+                    onClick={handleGetColor}
+                >
+                    <HelloStringColorizer text={`${message ? `"${message}"` : " -- "}`} onColor={handleSetColor} />
                 </div>
                 <span className="text-gray-600">Index: {msgIndex !== null ? msgIndex : "N/A"}</span>
             </div>

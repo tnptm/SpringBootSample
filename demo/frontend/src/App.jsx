@@ -12,14 +12,16 @@ export default function App() {
   return (
     <>
       <header>
-        <h1 className='text-3xl font-bold underline m-8'>My Spring Boot Page</h1>
+        <h1 className='text-3xl text-stone-700 font-bold p-8 bg-stone-100 m-8 rounded-xl shadow shadow-lg'>My Spring Boot Page with React</h1>
       </header>
 
       <main>
-
-        <Hello />
-        <Json />
-       
+        <div className="mx-10 mb-8 text-stone-600 p-8 rounded-xl shadow shadow-md bg-stone-50">
+          <Hello />
+        </div>
+        <div className="mx-10 mb-8 text-stone-600 p-8  rounded-xl shadow shadow-md bg-stone-50">
+          <Json />
+        </div>
       </main>
     </>
   )

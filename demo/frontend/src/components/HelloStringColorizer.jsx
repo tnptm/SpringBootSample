@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export default function HelloStringColorizer({ text }) {
+export default function HelloStringColorizer({ text, onColor }) {
     const [textColor, setTextColor] = useState('rgb(0, 0, 0)');
 
     useEffect(() => {
@@ -11,6 +11,7 @@ export default function HelloStringColorizer({ text }) {
             return `rgb(${r}, ${g}, ${b})`;
         }
         setTextColor(randomColor());
+        onColor(textColor);
     }, [text]);
 
     return (
